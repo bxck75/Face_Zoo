@@ -36,7 +36,7 @@ else:
 
 name_split = group_img_url.split('/')
 img_file_name = name_split.pop()
-img_name = img_file_name.replace('.jpg','')
+img_name = img_file_name.replace('.jpg','').replace('.png','')
 
 response = requests.get(group_img_url)
 with open(img_file_name, 'wb') as f:
@@ -45,7 +45,6 @@ with open(img_file_name, 'wb') as f:
 img_path = img_file_name
 faces_out = img_name
 os.makedirs(faces_out, exist_ok = True)
-
 
 img = cv2.imread(img_path)
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
@@ -57,7 +56,7 @@ for (x,y,w,h) in faces_result:
   roi_color = img[y:y+h, x:x+w] 
   eyes = eye_detector.detectMultiScale(roi_gray) 
   if len(eyes) > 1:
-    cv2.imshow('col_img', roi_color)
+    #cv2.imshow('col_img', roi_color)
     pilim = cv2.cvtColor(roi_color, cv2.COLOR_BGR2RGB)
     im_pil = Image.fromarray(pilim)
     # save a image using extension
@@ -66,9 +65,9 @@ for (x,y,w,h) in faces_result:
 #  for (ex,ey,ew,eh) in eyes: 
 #    cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
 
-cv2.imshow('img',img) 
-cv2.waitKey(0) 
-cv2.destroyAllWindows()
+#cv2.imshow('img',img) 
+#cv2.waitKey(0) 
+#cv2.destroyAllWindows()
 
 import glob
 print(str(len(glob.glob(faces_out+'/*.jpg'))) + " faces found")
