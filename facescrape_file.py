@@ -8,7 +8,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 print(ROOT_DIR)
 os.system("git clone https://github.com/bxck75/Face_Zoo.git")
 
-haar_path = os.path.join(ROOT_DIR,'Face_Zoo')
+haar_path = os.path.join(ROOT_DIR)
 
 face_detector = cv2.CascadeClassifier(os.path.join(haar_path,'haarcascade_frontalface_default.xml'))
 eye_detector = cv2.CascadeClassifier(os.path.join(haar_path,'haarcascade_eye.xml'))
@@ -18,7 +18,7 @@ and read it
 """
 group_img_url =''
 if len(sys.argv) > 1:
-    group_img_url = sys.argv[1]
+    group_img_url =  os.path.join(sys.argv[1])
 else:
     group_img_url =  os.path.join(haar_path,'nintchdbpict000299847684-1.jpg')
 
